@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+}
+
+.dashboard__container {
+   text-align: center;
+   padding: 10px;
+}
+
+
+.dashboard__input {
+    width: 100%;
+    justify-content:center;
+    display: flex;
+    align-items: center;
+}
+
+.dashboard__button {
+    padding: 10px;
+}
