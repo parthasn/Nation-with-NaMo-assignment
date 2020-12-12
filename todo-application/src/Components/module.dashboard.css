@@ -18,3 +18,12 @@
 .dashboard__button {
     padding: 10px;
 }
+
+.dashboard__list {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    
+}
