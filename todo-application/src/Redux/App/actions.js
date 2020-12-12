@@ -1,4 +1,4 @@
-import { ADD_TASK, TOGGLE_TASK } from './actionTypes'
+import { ADD_TASK, TOGGLE_TASK } from '../actionTypes'
 import { v4 as uuid } from 'uuid'
 
 export const addTask = (payload) => ({
