@@ -12,6 +12,11 @@ Tasks
 8. A reset  button to clear all todo and return to initial state. - done
 9. Hitting the refresh button (including hard refresh) in the browser should not cause any 
     change in the state of the app (it should work like a regular offline app - done
+10. Create a Hash-tag feature:
+    a. Any text in todo matching the #hashtag pattern should be separately highlighted. - done (need to verify)
+    b. Clicking on a hashtag should act as a filter and show only Todo(s) containing that tag.
+    c. Hashtags can be stacked and the result should be only Todo(s) where all of them are 
+    present (ex. after clicking #work I should then be able to click #back-end to see Todo(s) containing both tags)
 
 
 
