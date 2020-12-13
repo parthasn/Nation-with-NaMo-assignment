@@ -4,7 +4,7 @@ import './module.todocard.css';
 import { useDispatch } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { toggleTask, filter } from '../Redux/App/actions';
+import { toggleTask, filter, deleteTask } from '../Redux/App/actions';
 import ReactHashtag from 'react-hashtag';
 import Checkbox from '@material-ui/core/Checkbox';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -65,6 +65,10 @@ function TodoCard({ data }) {
         dispatch(filter(value));
         console.log('hashtag', value);
     };
+
+    const deleteTodo = () => {
+        dispatch(deleteTask(id));
+    }
     console.log('data', title, status);
     return (
         <div className="todoCard__container">
@@ -77,7 +81,7 @@ function TodoCard({ data }) {
                                 <ReactHashtag className = {classes.hashtag} onHashtagClick={handleHashtag}>
                                     {title}
                                 </ReactHashtag>
-                                <DeleteIcon className = {classes.deleteCompleted}/>
+                                <DeleteIcon onClick = {deleteTodo} className = {classes.deleteCompleted}/>
                                 
                                 
                             </div>
@@ -95,7 +99,7 @@ function TodoCard({ data }) {
                                     inputProps={{ 'aria-label': 'primary checkbox' }}
                                     // style = {{float: "right"}}
                                 />
-                                <DeleteIcon className = {classes.deletePending}/>
+                                <DeleteIcon onClick = {deleteTodo} className = {classes.deletePending}/>
                                 
 
                             </div>

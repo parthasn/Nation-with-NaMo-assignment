@@ -1,5 +1,5 @@
-import { ADD_TASK, TOGGLE_TASK, RESET, FILTER_CRITERIA, DELETE_FILTER_CRITERIA } from './actionTypes';
-import { loadData, saveData, removeData } from '../localStorage';
+import { ADD_TASK, TOGGLE_TASK, RESET, FILTER_CRITERIA, DELETE_FILTER_CRITERIA, DELETE_TASK } from './actionTypes';
+import { loadData, saveData, removeData, removeTask } from '../localStorage';
 
 export const initState = {
     todo: loadData('tasks') || [],
@@ -58,6 +58,14 @@ const reducer = (state = initState, { type, payload }) => {
                 ...state,
                 filterBy: state.filterBy.filter((item) => item !== payload)
             };
+
+            case DELETE_TASK:
+                removeTask(payload);
+                return {
+                    ...state,
+                    pending: state.pending.filter((item) => item.id !== payload),
+                    completedTodo: state.completedTodo.filter((item) => item.id !== payload),
+                };
 
         default:
             return state;

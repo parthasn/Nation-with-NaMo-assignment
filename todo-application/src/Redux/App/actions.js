@@ -1,4 +1,4 @@
-import { ADD_TASK, TOGGLE_TASK, RESET, FILTER_CRITERIA, DELETE_FILTER_CRITERIA } from './actionTypes';
+import { ADD_TASK, TOGGLE_TASK, RESET, FILTER_CRITERIA, DELETE_FILTER_CRITERIA, DELETE_TASK } from './actionTypes';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
 
@@ -24,6 +24,11 @@ export const filter = (payload) => ({
 
 export const deleteFilter = (payload) => ({
     type: DELETE_FILTER_CRITERIA,
+    payload
+});
+
+export const deleteTask = (payload) => ({
+    type: DELETE_TASK,
     payload
 });
 
