@@ -1,6 +1,8 @@
 import React from 'react'
 import { deleteFilter } from '../Redux/App/actions';
+import './module.filterbox.css';
 import { useDispatch } from 'react-redux';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 function FilterBox({data}) {
     const dispatch = useDispatch();
@@ -9,10 +11,10 @@ function FilterBox({data}) {
     }
     
     return (
-        <div className = "filterbox__container">
+        <span className = "filterbox">
             <p>{data}</p>
-            <button onClick = {handleDelete}>x</button>
-        </div>
+            <CancelIcon style = {{marginLeft: "10px"}} onClick = {handleDelete}></CancelIcon>
+        </span>
     )
 }
 

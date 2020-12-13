@@ -33,7 +33,7 @@ export const deleteTask = (payload) => ({
 });
 
 export const handleAddTask = (payload) => async (dispatch) => {
-    let title = payload.split(' ');
+    let title = payload.toLowerCase().split(' ');
     let hashtagArr = [];
     for (let i = 0; i < title.length; i++) {
         let hash = title[i];

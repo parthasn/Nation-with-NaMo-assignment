@@ -5,6 +5,7 @@
 span {
     color: rgb(211, 80, 86);
     font-weight: bold;
+   
 }
 
 .todocard__taskDiv {
@@ -12,7 +13,8 @@ span {
 }
 
 .todocard__hashtag {
-    flex:1;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .todocard__checkbox {

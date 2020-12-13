@@ -29,9 +29,12 @@ const useStyles = makeStyles(() => ({
         textAlign: 'left',
         position: "relative"
     },
+    hashtag: {
+        color: "green"
+    },
     checkbox: {
         position: "absolute",
-        right: "40px",
+        right: "25px",
         bottom: 0
     },
     deleteCompleted: {
@@ -44,7 +47,7 @@ const useStyles = makeStyles(() => ({
         height: "25px",
         position: "absolute",
         right: "2px",
-        bottom: "0px"
+        bottom: "10px"
     }
    
 }));
@@ -77,8 +80,7 @@ function TodoCard({ data }) {
                     {status ? (
                         <Paper className={classes.paper_completed}>
                             <div>
-                                
-                                <ReactHashtag className = {classes.hashtag} onHashtagClick={handleHashtag}>
+                                <ReactHashtag onHashtagClick={handleHashtag}>
                                     {title}
                                 </ReactHashtag>
                                 <DeleteIcon onClick = {deleteTodo} className = {classes.deleteCompleted}/>
@@ -88,8 +90,8 @@ function TodoCard({ data }) {
                         </Paper>
                     ) : (
                         <Paper className={classes.paper_pending}>
-                            <div>
-                                <ReactHashtag  className = {classes.hashtag} onHashtagClick={handleHashtag}>
+                            <div >
+                                <ReactHashtag  onHashtagClick={handleHashtag}>
                                     {title}
                                 </ReactHashtag>
                                 <Checkbox
@@ -97,7 +99,6 @@ function TodoCard({ data }) {
                                     checked={checked}
                                     onChange={handleToggle}
                                     inputProps={{ 'aria-label': 'primary checkbox' }}
-                                    // style = {{float: "right"}}
                                 />
                                 <DeleteIcon onClick = {deleteTodo} className = {classes.deletePending}/>
                                 

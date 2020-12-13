@@ -1,8 +1,9 @@
 * {
     margin: 0;
+    padding-top: 10px;
 }
 
-.dashboard__container {
+.dashboard {
     border: 7px solid #000d33 ;
     border-radius: 20px;
     margin: auto;
@@ -21,16 +22,15 @@
 .dashboard__input {
     outline: none;
     border: none;
+    font-size: 16px;;
     flex: 1;
+    margin-left: 10px;
 }
 
 .dashboard__reset {
     flex: 0;
     height: 30px;
-}
-
-.dashboard__button {
-    padding: 10px;
+    margin-right: 10px;
 }
 
 .dashboard__list {
@@ -44,4 +44,17 @@
 .dashboard__heading {
     margin-top: 10px;
     margin-left: 10px;
+}
+
+.dashboard__filter {
+    display: flex;
+    margin: 10px;
+    align-items:center;
+}
+
+.dashboard__hr {
+    border: 2px solid #000d33;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 0;
 }

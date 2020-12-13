@@ -6,7 +6,7 @@ export const initState = {
     completedTodo: loadData('completed') || [],
     pending: loadData('pending') || [],
     sortByTime: 'desc',
-    filterBy: []
+    filterBy: loadData('filterBy') || []
 };
 
 const reducer = (state = initState, { type, payload }) => {
@@ -35,7 +35,7 @@ const reducer = (state = initState, { type, payload }) => {
                     completedTodo: [ ...state.completedTodo, newTodo ]
                 };
             }
-
+            break;
         case RESET:
             removeData('tasks');
             removeData('pending');
@@ -48,24 +48,26 @@ const reducer = (state = initState, { type, payload }) => {
             };
 
         case FILTER_CRITERIA:
+            saveData('filterBy', [ ...state.filterBy, payload ]);
             return {
                 ...state,
                 filterBy: [ ...state.filterBy, payload ]
             };
 
         case DELETE_FILTER_CRITERIA:
+            saveData('filterBy', state.filterBy.filter((item) => item !== payload));
             return {
                 ...state,
                 filterBy: state.filterBy.filter((item) => item !== payload)
             };
 
-            case DELETE_TASK:
-                removeTask(payload);
-                return {
-                    ...state,
-                    pending: state.pending.filter((item) => item.id !== payload),
-                    completedTodo: state.completedTodo.filter((item) => item.id !== payload),
-                };
+        case DELETE_TASK:
+            removeTask(payload);
+            return {
+                ...state,
+                pending: state.pending.filter((item) => item.id !== payload),
+                completedTodo: state.completedTodo.filter((item) => item.id !== payload)
+            };
 
         default:
             return state;
