@@ -5,7 +5,8 @@ import { useDispatch } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { toggleTask } from '../Redux/App/actions';
-import ReactHashtag from "react-hashtag";
+import ReactHashtag from 'react-hashtag';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,11 +23,17 @@ const useStyles = makeStyles((theme) => ({
 function TodoCard({ data }) {
     const classes = useStyles();
     const dispatch = useDispatch();
+    const [checked, setChecked] = React.useState(data.status);
     const { title, status, id } = data;
 
     const handleToggle = () => {
         dispatch(toggleTask(id));
+        setChecked(true)
         console.log('toggle', id);
+    };
+
+    const handleHashtag = (value) => {
+        console.log('hashtag', value);
     };
     console.log('data', title, status);
     return (
@@ -36,11 +43,15 @@ function TodoCard({ data }) {
                 <Grid item xs={8}>
                     <Paper
                         style={{ backgroundColor: status ? 'green' : 'white' }}
-                        onClick={handleToggle}
                         className={classes.paper}
                     >
                         <div>
-                            <ReactHashtag>{title}</ReactHashtag>
+                            <Checkbox
+                                checked={checked}
+                                onChange={handleToggle}
+                                inputProps={{ 'aria-label': 'primary checkbox' }}
+                            />
+                            <ReactHashtag onHashtagClick={handleHashtag}>{title}</ReactHashtag>
                         </div>
                     </Paper>
                 </Grid>
