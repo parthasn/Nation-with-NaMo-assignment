@@ -2,7 +2,6 @@ import { ADD_TASK, TOGGLE_TASK, RESET, FILTER_CRITERIA, DELETE_FILTER_CRITERIA, 
 import { loadData, saveData, removeData, removeTask } from '../localStorage';
 
 export const initState = {
-    todo: loadData('tasks') || [],
     completedTodo: loadData('completed') || [],
     pending: loadData('pending') || [],
     sortByTime: 'desc',
@@ -12,12 +11,9 @@ export const initState = {
 const reducer = (state = initState, { type, payload }) => {
     switch (type) {
         case ADD_TASK:
-            saveData('tasks', [ ...state.todo, payload ]);
             saveData('pending', [ ...state.pending, payload ]);
-            console.log('reducer', payload);
             return {
                 ...state,
-                todo: [ ...state.todo, payload ],
                 pending: [ ...state.pending, payload ]
             };
 
@@ -37,14 +33,14 @@ const reducer = (state = initState, { type, payload }) => {
             }
             break;
         case RESET:
-            removeData('tasks');
             removeData('pending');
             removeData('completed');
+            removeData('filterBy');
             return {
                 ...state,
                 pending: [],
                 completedTodo: [],
-                todo: []
+                filterBy: []
             };
 
         case FILTER_CRITERIA:

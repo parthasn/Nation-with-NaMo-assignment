@@ -17,6 +17,14 @@ Tasks
     b. Clicking on a hashtag should act as a filter and show only Todo(s) containing that tag. - Done
     c. Hashtags can be stacked and the result should be only Todo(s) where all of them are 
     present (ex. after clicking #work I should then be able to click #back-end to see Todo(s) containing both tags) - Done
+11. Tags array. - Done
+12. Empty task should not be added. - Done
+13. Wrap text in task card.- Done
+14. display entire filter criteria. - Done  
+15. filterBy cannot be repeated. - Done
+16. Improve the css of the entire page - Done
+17. A person cannot enter same Todo twice if its already in pending. If user tries,show
+warning. - Done
 
 
 

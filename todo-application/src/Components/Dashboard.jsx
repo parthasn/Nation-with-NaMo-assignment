@@ -36,7 +36,6 @@ function Dashboard() {
         dispatch(reset());
     };
 
-    
     return (
         <div className="dashboard">
             <div className="dashboard__inputDiv">
@@ -49,7 +48,7 @@ function Dashboard() {
                     onKeyPress={handleKeyPress}
                 />
                 <img
-                    src="https://www.flaticon.com/svg/static/icons/svg/560/560512.svg"
+                    src="https://cdn0.iconfinder.com/data/icons/essentials-solid/100/Refresh-512.png"
                     alt="reset"
                     className="dashboard__reset"
                     onClick={handleReset}
@@ -60,6 +59,7 @@ function Dashboard() {
                 <h3>Filter By:</h3>
                 {filterBy && filterBy.map((item) => <FilterBox key={item} data={item} />)}
             </div>
+
             <div className="dashboard__list">
                 <h3 className="dashboard__heading">Pending Tasks:</h3>
                 {pending &&
@@ -72,7 +72,6 @@ function Dashboard() {
                             for (let i = 0; i < filterBy.length; i++) {
                                 if (item.hashtagList.includes(filterBy[i].toLowerCase())) {
                                     numOfCriteriaMatching++;
-                                    
                                 }
                             }
                             if (numOfCriteriaMatching === filterBy.length) {
@@ -85,11 +84,9 @@ function Dashboard() {
                             }
                             if (sortByTime === 'asc') {
                                 return a.creationTime - b.creationTime;
-                            } 
-                            else if (sortByTime === 'desc') {
+                            } else if (sortByTime === 'desc') {
                                 return b.creationTime - a.creationTime;
                             }
-                            
                         })
                         .map((item) => <TodoCard key={item.id} data={item} />)}
                 <br />
@@ -110,7 +107,6 @@ function Dashboard() {
                             if (numOfCriteriaMatching === filterBy.length) {
                                 return item;
                             }
-                            
                         })
                         .sort((a, b) => {
                             if (sortByTime === null) {
@@ -118,11 +114,9 @@ function Dashboard() {
                             }
                             if (sortByTime === 'asc') {
                                 return a.completionTime - b.completionTime;
-                            } 
-                            else if (sortByTime === 'desc') {
+                            } else if (sortByTime === 'desc') {
                                 return b.completionTime - a.completionTime;
                             }
-                            
                         })
                         .map((item) => <TodoCard name={item.id} key={item.id} data={item} />)}
             </div>

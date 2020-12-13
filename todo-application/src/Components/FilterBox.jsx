@@ -1,21 +1,20 @@
-import React from 'react'
+import React from 'react';
 import { deleteFilter } from '../Redux/App/actions';
 import './module.filterbox.css';
 import { useDispatch } from 'react-redux';
 import CancelIcon from '@material-ui/icons/Cancel';
 
-function FilterBox({data}) {
+function FilterBox({ data }) {
     const dispatch = useDispatch();
     const handleDelete = () => {
-        dispatch(deleteFilter(data))
-    }
-    
+        dispatch(deleteFilter(data));
+    };
     return (
-        <span className = "filterbox">
+        <span className="filterbox">
             <p>{data}</p>
-            <CancelIcon style = {{marginLeft: "10px"}} onClick = {handleDelete}></CancelIcon>
+            <CancelIcon style={{ marginLeft: '10px' }} onClick={handleDelete} />
         </span>
-    )
+    );
 }
 
-export default FilterBox
+export default FilterBox;
