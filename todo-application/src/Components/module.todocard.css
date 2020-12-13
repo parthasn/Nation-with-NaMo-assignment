@@ -3,6 +3,23 @@
 }
 
 span {
-    color: blue;
+    color: rgb(211, 80, 86);
+    font-weight: bold;
 }
+
+.todocard__taskDiv {
+    display: flex;
+}
+
+.todocard__hashtag {
+    flex:1;
+}
+
+.todocard__checkbox {
+    flex:0;
+}
+
+
+
+
 

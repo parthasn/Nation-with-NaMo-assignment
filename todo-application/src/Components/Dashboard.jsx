@@ -12,8 +12,9 @@ import FilterBox from './FilterBox';
 
 const useStyles = makeStyles(() => ({
     button: {
-        marginLeft: '10px',
-        padding: '15px'
+        margin: '10px',
+        padding: '5px',
+        color: "white !important" 
     }
 }));
 
@@ -42,72 +43,79 @@ function Dashboard() {
     };
 
     const handleReset = () => {
-        dispatch(reset())
+        dispatch(reset());
+    };
 
-    }
-
-    
     console.log('todo', pending);
     console.log('filter', filterBy);
-    console.log('completedTodo', completedTodo)
+    console.log('completedTodo', completedTodo);
     console.log('sort', sortByTime);
     return (
-        <div className="dashboard__container">
-            <button onClick = {handleReset}>Reset</button>
-            <div className="dashboard__input">
-                <TextField
-                    id="filled-password-input"
-                    label="Add a Task"
-                    value={task}
-                    type="text"
-                    variant="outlined"
-                    onChange={handleChange}
-                    onKeyPress={handleKeyPress}
-                />
-                <Button className={classes.button} variant="contained" color="primary" onClick={handleAdd}>
-                    Add Task
-                </Button>
-            </div>
-            <div>
-                {
-                    filterBy && filterBy.map((item) => (
-                        <FilterBox key = {item} data = {item}/>
-                    ))
-                }
-            </div>
-            <div className = "dashboard__list">
-                {
-                    pending && pending
-                    .sort((a,b)=>{
-                        if(sortByTime === null){
-                            return 0
-                        }
-                        if(sortByTime === "asc"){
-                            return a.creationTime - b.creationTime
-                        }
-                        else if(sortByTime === "desc"){
-                            return b.creationTime - a.creationTime
-                        }
-                    }).map((item) => (
-                        <TodoCard key = {item.id} data = {item}/>
-                    ))
-                }
-                {
-                    completedTodo && completedTodo
-                    .sort((a,b)=>{
-                        if(sortByTime === null){
-                            return 0
-                        }
-                        if(sortByTime === "asc"){
-                            return a.completionTime - b.completionTime
-                        }
-                        else if(sortByTime === "desc"){
-                            return b.completionTime - a.completionTime
-                        }
-                    }).map((item) => (
-                        <TodoCard name = {item.id} key = {item.id} data = {item}/>
-                    ))
-                }
+        <div className="dashboard">
+            <div className="dashboard__container">
+                <div className="dashboard__inputDiv">
+                    <input
+                        className="dashboard__input"
+                        placeholder="Add a Task"
+                        value={task}
+                        type="text"
+                        onChange={handleChange}
+                        onKeyPress={handleKeyPress}
+                    />
+                    <Button className = {classes.button} onClick = {handleAdd} variant="contained" color="primary">
+                        Add
+                    </Button>
+
+                    <img
+                        src="https://www.flaticon.com/svg/static/icons/svg/560/560512.svg"
+                        className="dashboard__reset"
+                        onClick={handleReset}
+                    />
+                </div>
+                <hr />
+                <div>{filterBy && filterBy.map((item) => <FilterBox key={item} data={item} />)}</div>
+                <div className="dashboard__list">
+                    <h3 className="dashboard__heading">Pending Tasks:</h3>
+                    {pending &&
+                        pending
+                            .filter((item) => {
+                                if(!filterBy.length){
+                                    return item
+                                }
+                                for (let i = 0; i < filterBy.length; i++) {
+                                    if (item.title.includes(filterBy[i]))
+                                      return item;
+                                  }
+                                  
+                                })
+                            .sort((a, b) => {
+                                if (sortByTime === null) {
+                                    return 0;
+                                }
+                                if (sortByTime === 'asc') {
+                                    return a.creationTime - b.creationTime;
+                                } else if (sortByTime === 'desc') {
+                                    return b.creationTime - a.creationTime;
+                                }
+                            })
+                            .map((item) => <TodoCard key={item.id} data={item} />)}
+                    <br />
+                    <hr />
+                    <h3 className="dashboard__heading">Completed Tasks:</h3>
+                    {completedTodo &&
+                        completedTodo
+                            .sort((a, b) => {
+                                if (sortByTime === null) {
+                                    return 0;
+                                }
+                                if (sortByTime === 'asc') {
+                                    return a.completionTime - b.completionTime;
+                                } else if (sortByTime === 'desc') {
+                                    return b.completionTime - a.completionTime;
+                                }
+                            })
+                            .map((item) => <TodoCard name={item.id} key={item.id} data={item} />)}
+                </div>
             </div>
         </div>
     );
