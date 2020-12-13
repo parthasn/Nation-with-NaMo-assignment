@@ -13,10 +13,6 @@ export const toggleTask = (payload) => ({
     payload
 });
 
-// export const sortByTimeOfCreation = (payload) => ({
-//     type: SORT_BY_TIME,
-//     payload
-// });
 
 export const handleAddTask = (payload) => async (dispatch) => {
     
@@ -30,7 +26,8 @@ export const handleAddTask = (payload) => async (dispatch) => {
                 id: uuid(),
                 title: payload,
                 status: false,
-                timestamp: Date.now()
+                creationTime: Date.now(),
+                completionTime: null
             }
         });
         dispatch(addTask(res.data));

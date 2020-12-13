@@ -19,18 +19,10 @@ const useStyles = makeStyles(() => ({
 function Dashboard() {
     const classes = useStyles();
     const [ task, setTask ] = useState('');
-    const todo = useSelector((state) => state.app.todo) || [];
     const pending = useSelector((state) => state.app.pending) || [];
     const completedTodo = useSelector((state) => state.app.completedTodo) || [];
     const sortByTime = useSelector((state) => state.app.sortByTime);
     const dispatch = useDispatch();
-
-    // useEffect(
-    //     () => {
-    //         dispatch(sortByTimeOfCreation('desc'))
-    //     },
-    //     [sortByTime]
-    // );
 
     const handleChange = (e) => {
         setTask(e.target.value);
@@ -48,7 +40,7 @@ function Dashboard() {
     };
 
     
-    console.log('todo', todo);
+    console.log('todo', pending);
     console.log('completedTodo', completedTodo)
     console.log('sort', sortByTime);
     return (
@@ -69,16 +61,16 @@ function Dashboard() {
             </div>
             <div className = "dashboard__list">
                 {
-                    todo && todo
+                    pending && pending
                     .sort((a,b)=>{
                         if(sortByTime === null){
                             return 0
                         }
                         if(sortByTime === "asc"){
-                            return a.timestamp - b.timestamp
+                            return a.creationTime - b.creationTime
                         }
                         else if(sortByTime === "desc"){
-                            return b.timestamp - a.timestamp
+                            return b.creationTime - a.creationTime
                         }
                     }).map((item) => (
                         <TodoCard key = {item.id} data = {item}/>
@@ -91,10 +83,10 @@ function Dashboard() {
                             return 0
                         }
                         if(sortByTime === "asc"){
-                            return a.timestamp - b.timestamp
+                            return a.completionTime - b.completionTime
                         }
                         else if(sortByTime === "desc"){
-                            return b.timestamp - a.timestamp
+                            return b.completionTime - a.completionTime
                         }
                     }).map((item) => (
                         <TodoCard name = {item.id} key = {item.id} data = {item}/>
