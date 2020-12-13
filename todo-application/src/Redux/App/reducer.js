@@ -1,11 +1,12 @@
-import { ADD_TASK, TOGGLE_TASK, RESET } from './actionTypes';
+import { ADD_TASK, TOGGLE_TASK, RESET, FILTER_CRITERIA, DELETE_FILTER_CRITERIA } from './actionTypes';
 import { loadData, saveData, removeData } from '../localStorage';
 
 export const initState = {
     todo: loadData('tasks') || [],
     completedTodo: loadData('completed') || [],
     pending: loadData('pending') || [],
-    sortByTime: 'desc'
+    sortByTime: 'desc',
+    filterBy: []
 };
 
 const reducer = (state = initState, { type, payload }) => {
@@ -43,7 +44,19 @@ const reducer = (state = initState, { type, payload }) => {
                 ...state,
                 pending: [],
                 completedTodo: [],
-                todo: [],
+                todo: []
+            };
+
+        case FILTER_CRITERIA:
+            return {
+                ...state,
+                filterBy: [ ...state.filterBy, payload ]
+            };
+
+        case DELETE_FILTER_CRITERIA:
+            return {
+                ...state,
+                filterBy: state.filterBy.filter((item) => item !== payload)
             };
 
         default:

@@ -4,7 +4,7 @@ import './module.todocard.css';
 import { useDispatch } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { toggleTask } from '../Redux/App/actions';
+import { toggleTask, filter } from '../Redux/App/actions';
 import ReactHashtag from 'react-hashtag';
 import Checkbox from '@material-ui/core/Checkbox';
 
@@ -33,6 +33,7 @@ function TodoCard({ data }) {
     };
 
     const handleHashtag = (value) => {
+        dispatch(filter(value))
         console.log('hashtag', value);
     };
     console.log('data', title, status);

@@ -8,6 +8,7 @@ import { v4 as uuid } from 'uuid';
 import axios from 'axios';
 import { handleAddTask, reset } from '../Redux/App/actions';
 import TodoCard from './TodoCard';
+import FilterBox from './FilterBox';
 
 const useStyles = makeStyles(() => ({
     button: {
@@ -20,6 +21,7 @@ function Dashboard() {
     const classes = useStyles();
     const [ task, setTask ] = useState('');
     const pending = useSelector((state) => state.app.pending) || [];
+    const filterBy = useSelector((state) => state.app.filterBy) || [];
     const completedTodo = useSelector((state) => state.app.completedTodo) || [];
     const sortByTime = useSelector((state) => state.app.sortByTime);
     const dispatch = useDispatch();
@@ -41,11 +43,12 @@ function Dashboard() {
 
     const handleReset = () => {
         dispatch(reset())
-        
+
     }
 
     
     console.log('todo', pending);
+    console.log('filter', filterBy);
     console.log('completedTodo', completedTodo)
     console.log('sort', sortByTime);
     return (
@@ -64,6 +67,13 @@ function Dashboard() {
                 <Button className={classes.button} variant="contained" color="primary" onClick={handleAdd}>
                     Add Task
                 </Button>
+            </div>
+            <div>
+                {
+                    filterBy && filterBy.map((item) => (
+                        <FilterBox key = {item} data = {item}/>
+                    ))
+                }
             </div>
             <div className = "dashboard__list">
                 {
