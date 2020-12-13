@@ -1,7 +1,9 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import { toggleTask } from '../Redux/App/actions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,14 +19,20 @@ const useStyles = makeStyles((theme) => ({
 
 function TodoCard({data}) {
   const classes = useStyles(); 
-  const { title, status, onClick } = data
+  const dispatch = useDispatch();
+  const { title, status, id } = data
+
+  const handleToggle = () => {
+    dispatch(toggleTask(id))
+    console.log("toggle", id)
+  }
   console.log("data",title, status)
   return (
     <div className = "todoCard__container">
         <Grid container spacing={3}>
         <Grid item xs></Grid>
         <Grid item xs={8}>
-          <Paper onClick = {onClick} className={classes.paper}>
+          <Paper style = {{backgroundColor: status? "green" : "white"}} onClick = {handleToggle} className={classes.paper}>
             <div>
               {title}
             </div>

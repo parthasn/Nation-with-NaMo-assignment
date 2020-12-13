@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
-import { handleAddTask } from '../Redux/App/actions';
+import { handleAddTask, toggleTask } from '../Redux/App/actions';
 import TodoCard from './TodoCard';
 
 const useStyles = makeStyles(() => ({
@@ -20,6 +20,8 @@ function Dashboard() {
     const classes = useStyles();
     const [ task, setTask ] = useState('');
     const todo = useSelector((state) => state.app.todo) || [];
+    const pending = useSelector((state) => state.app.pending) || [];
+    const completedTodo = useSelector((state) => state.app.completedTodo) || [];
     const sortByTime = useSelector((state) => state.app.sortByTime);
     const dispatch = useDispatch();
 
@@ -45,10 +47,9 @@ function Dashboard() {
         }
     };
 
-    const handleCompleted = () => {
-        
-    }
+    
     console.log('todo', todo);
+    console.log('completedTodo', completedTodo)
     console.log('sort', sortByTime);
     return (
         <div className="dashboard__container">
@@ -80,7 +81,23 @@ function Dashboard() {
                             return b.timestamp - a.timestamp
                         }
                     }).map((item) => (
-                        <TodoCard key = {item.id} data = {item} onClick = {handleCompleted}/>
+                        <TodoCard key = {item.id} data = {item}/>
+                    ))
+                }
+                {
+                    completedTodo && completedTodo
+                    .sort((a,b)=>{
+                        if(sortByTime === null){
+                            return 0
+                        }
+                        if(sortByTime === "asc"){
+                            return a.timestamp - b.timestamp
+                        }
+                        else if(sortByTime === "desc"){
+                            return b.timestamp - a.timestamp
+                        }
+                    }).map((item) => (
+                        <TodoCard name = {item.id} key = {item.id} data = {item}/>
                     ))
                 }
             </div>
