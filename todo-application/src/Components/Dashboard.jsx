@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
     button: {
         margin: '10px',
         padding: '5px',
-        color: "white !important" 
+        color: 'white !important'
     }
 }));
 
@@ -32,6 +32,7 @@ function Dashboard() {
     };
 
     const handleAdd = () => {
+
         dispatch(handleAddTask(task));
         setTask('');
     };
@@ -62,7 +63,7 @@ function Dashboard() {
                         onChange={handleChange}
                         onKeyPress={handleKeyPress}
                     />
-                    <Button className = {classes.button} onClick = {handleAdd} variant="contained" color="primary">
+                    <Button className={classes.button} onClick={handleAdd} variant="contained" color="primary">
                         Add
                     </Button>
 
@@ -79,15 +80,16 @@ function Dashboard() {
                     {pending &&
                         pending
                             .filter((item) => {
-                                if(!filterBy.length){
-                                    return item
+                                if (!filterBy.length) {
+                                    return item;
                                 }
+                                let numOfCriteriaMatching = 0;
                                 for (let i = 0; i < filterBy.length; i++) {
-                                    if (item.title.includes(filterBy[i]))
-                                      return item;
-                                  }
-                                  
-                                })
+                                    if (item.hashtagList.includes(filterBy[i])) 
+                                    numOfCriteriaMatching++;
+                                }
+                                if (numOfCriteriaMatching === filterBy.length) return item;
+                            })
                             .sort((a, b) => {
                                 if (sortByTime === null) {
                                     return 0;
@@ -104,6 +106,16 @@ function Dashboard() {
                     <h3 className="dashboard__heading">Completed Tasks:</h3>
                     {completedTodo &&
                         completedTodo
+                            .filter((item) => {
+                                if (!filterBy.length) {
+                                    return item;
+                                }
+                                let numOfCriteriaMatching = 0;
+                                for (let i = 0; i < filterBy.length; i++) {
+                                    if (item.hashtagList.includes(filterBy[i])) numOfCriteriaMatching++;
+                                }
+                                if (numOfCriteriaMatching === filterBy.length) return item;
+                            })
                             .sort((a, b) => {
                                 if (sortByTime === null) {
                                     return 0;

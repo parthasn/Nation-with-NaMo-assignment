@@ -1,11 +1,10 @@
 import { ADD_TASK, TOGGLE_TASK, RESET, FILTER_CRITERIA, DELETE_FILTER_CRITERIA } from './actionTypes';
 import { v4 as uuid } from 'uuid';
-import axios from 'axios'
+import axios from 'axios';
 
 export const addTask = (payload) => ({
     type: ADD_TASK,
     payload
-    
 });
 
 export const toggleTask = (payload) => ({
@@ -28,11 +27,17 @@ export const deleteFilter = (payload) => ({
     payload
 });
 
-
 export const handleAddTask = (payload) => async (dispatch) => {
-    
-    
-    console.log("t", payload)
+    let title = payload.split(' ');
+    let hashtagArr = [];
+    for (let i = 0; i < title.length; i++) {
+        let hash = title[i];
+        if (hash[0] === '#') {
+            hashtagArr.push(hash);
+        }
+    }
+
+    console.log('t', payload);
     try {
         let res = await axios({
             method: 'post',
@@ -42,13 +47,12 @@ export const handleAddTask = (payload) => async (dispatch) => {
                 title: payload,
                 status: false,
                 creationTime: Date.now(),
-                completionTime: null
+                completionTime: null,
+                hashtagList: hashtagArr
             }
         });
         dispatch(addTask(res.data));
-
-        
     } catch (err) {
-        console.log(err)
+        console.log(err);
     }
 };
