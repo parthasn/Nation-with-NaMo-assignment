@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
-import { handleAddTask, toggleTask } from '../Redux/App/actions';
+import { handleAddTask, reset } from '../Redux/App/actions';
 import TodoCard from './TodoCard';
 
 const useStyles = makeStyles(() => ({
@@ -39,12 +39,18 @@ function Dashboard() {
         }
     };
 
+    const handleReset = () => {
+        dispatch(reset())
+        
+    }
+
     
     console.log('todo', pending);
     console.log('completedTodo', completedTodo)
     console.log('sort', sortByTime);
     return (
         <div className="dashboard__container">
+            <button onClick = {handleReset}>Reset</button>
             <div className="dashboard__input">
                 <TextField
                     id="filled-password-input"

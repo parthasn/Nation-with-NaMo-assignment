@@ -1,4 +1,4 @@
-import { ADD_TASK, TOGGLE_TASK, SORT_BY_TIME } from './actionTypes';
+import { ADD_TASK, TOGGLE_TASK, RESET } from './actionTypes';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios'
 
@@ -10,6 +10,11 @@ export const addTask = (payload) => ({
 
 export const toggleTask = (payload) => ({
     type: TOGGLE_TASK,
+    payload
+});
+
+export const reset = (payload) => ({
+    type: RESET,
     payload
 });
 

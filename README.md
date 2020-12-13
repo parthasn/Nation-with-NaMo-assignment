@@ -9,7 +9,14 @@ Tasks
 5. On completion, todoto be moved tothe bottom. - done
 6. Active todo to appear in order of creation (most recent on top) - done
 7. Completed todos to appear in order of completion (most recent on top) - done
-8. A reset  button to clear all todo and return to initial state.
+8. A reset  button to clear all todo and return to initial state. - done
+9. Hitting the refresh button (including hard refresh) in the browser should not cause any 
+    change in the state of the app (it should work like a regular offline app - done
+
+
+
+
+ 
 
 
 
