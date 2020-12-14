@@ -22,8 +22,8 @@
 11. Tags array. - Done
 12. Empty task should not be added. - Done
 13. Wrap text in task card.- Done
-14. display entire filter criteria. - Done  
-15. filterBy cannot be repeated. - Done
+14. Display entire filter criteria. - Done  
+15. FilterBy cannot be repeated. - Done
 16. Improve the css of the entire page - Done
 
 ### Technologies Used
