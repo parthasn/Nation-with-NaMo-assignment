@@ -39,6 +39,8 @@ function Dashboard() {
 
     return (
         <div className={styles.dashboard}>
+            <h2 className = {styles.dashboard__heading}>TODO App</h2>
+            <br/>
             <div className={styles.dashboard__inputDiv}>
                 <input
                     className={styles.dashboard__input}

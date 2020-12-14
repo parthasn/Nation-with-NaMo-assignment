@@ -10,10 +10,13 @@ function FilterBox({ data }) {
         dispatch(deleteFilter(data));
     };
     return (
-        <span className={styles.filterbox}>
+        <div className={styles.filterbox}>
+            <div className = {styles.filterbox__task}>
             <p>{data}</p>
+            </div>
+            
             <CancelIcon style={{ marginLeft: '10px' }} onClick={handleDelete} />
-        </span>
+        </div>
     );
 }
 
