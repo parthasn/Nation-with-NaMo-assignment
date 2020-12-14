@@ -17,7 +17,7 @@ function Dashboard() {
     const handleChange = (e) => {
         setTask(e.target.value);
     };
-
+    // Adding tasks
     const handleAdd = () => {
         if (task === '') {
             alert('Task cannot be empty');
@@ -26,13 +26,13 @@ function Dashboard() {
             setTask('');
         }
     };
-
+    // Adding tasks on click on enter button
     const handleKeyPress = (e) => {
         if (e.which === 13) {
             handleAdd();
         }
     };
-
+    // Resetting to initial state
     const handleReset = () => {
         dispatch(reset());
     };
@@ -41,6 +41,7 @@ function Dashboard() {
         <div className={styles.dashboard}>
             <h2 className = {styles.dashboard__heading}>TODO App</h2>
             <br/>
+            {/* Add tasks */}
             <div className={styles.dashboard__inputDiv}>
                 <input
                     className={styles.dashboard__input}
@@ -69,6 +70,7 @@ function Dashboard() {
                 <h3 className={styles.dashboard__heading}>Pending Tasks:</h3>
                 {pending &&
                     pending
+                    // Filter pending tasks by hashtag
                         .filter((item) => {
                             if (!filterBy.length) {
                                 return item;
@@ -83,6 +85,7 @@ function Dashboard() {
                                 return item;
                             }
                         })
+                    // Sort pending tasks by creation time
                         .sort((a, b) => {
                             if (sortByTime === null) {
                                 return 0;
@@ -99,6 +102,7 @@ function Dashboard() {
                 <h3 className={styles.dashboard__heading}>Completed Tasks:</h3>
                 {completedTodo &&
                     completedTodo
+                    // Filter completed tasks by hashtag
                         .filter((item) => {
                             if (!filterBy.length) {
                                 return item;
@@ -113,6 +117,7 @@ function Dashboard() {
                                 return item;
                             }
                         })
+                    // Sort completed tasks by completion time
                         .sort((a, b) => {
                             if (sortByTime === null) {
                                 return 0;

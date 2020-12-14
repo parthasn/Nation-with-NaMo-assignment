@@ -77,7 +77,9 @@ function TodoCard({ data }) {
         <div>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
-                    {status ? (
+                    {
+                    // If task is completed
+                    status ? (
                         <Paper className={classes.paper_completed}>
                             <div className={styles.todocard__taskDiv}>
                                 <div className={styles.todocard__task}>
@@ -88,7 +90,9 @@ function TodoCard({ data }) {
                                 </Tooltip>
                             </div>
                         </Paper>
-                    ) : (
+                    ) : 
+                    // If task is pending
+                    (
                         <Paper className={classes.paper_pending}>
                             <div className={styles.todocard__taskDiv}>
                                 <div className={styles.todocard__task}>
@@ -96,6 +100,7 @@ function TodoCard({ data }) {
                                 </div>
                                 <Tooltip title="Completed" arrow placement="top">
                                     <Checkbox
+                                    // Checkbox for marking the completion of task
                                         className={classes.checkbox}
                                         checked={checked}
                                         onChange={handleToggle}
