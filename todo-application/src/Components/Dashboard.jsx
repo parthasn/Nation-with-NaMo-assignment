@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './module.dashboard.css';
+import styles from "./dashboard.module.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { handleAddTask, reset } from '../Redux/App/actions';
 import TodoCard from './TodoCard';
@@ -37,10 +37,10 @@ function Dashboard() {
     };
 
     return (
-        <div className="dashboard">
-            <div className="dashboard__inputDiv">
+        <div className={styles.dashboard}>
+            <div className={styles.dashboard__inputDiv}>
                 <input
-                    className="dashboard__input"
+                    className={styles.dashboard__input}
                     placeholder="Add a Task"
                     value={task}
                     type="text"
@@ -50,18 +50,18 @@ function Dashboard() {
                 <img
                     src="https://cdn0.iconfinder.com/data/icons/essentials-solid/100/Refresh-512.png"
                     alt="reset"
-                    className="dashboard__reset"
+                    className={styles.dashboard__reset}
                     onClick={handleReset}
                 />
             </div>
-            <hr className="dashboard__hr" />
-            <div className="dashboard__filter">
+            <hr className={styles.dashboard__hr} />
+            <div className={styles.dashboard__filter}>
                 <h3>Filter By:</h3>
                 {filterBy && filterBy.map((item) => <FilterBox key={item} data={item} />)}
             </div>
 
-            <div className="dashboard__list">
-                <h3 className="dashboard__heading">Pending Tasks:</h3>
+            <div className={styles.dashboard__list}>
+                <h3 className={styles.dashboard__heading}>Pending Tasks:</h3>
                 {pending &&
                     pending
                         .filter((item) => {
@@ -90,8 +90,8 @@ function Dashboard() {
                         })
                         .map((item) => <TodoCard key={item.id} data={item} />)}
                 <br />
-                <hr className="dashboard__hr" />
-                <h3 className="dashboard__heading">Completed Tasks:</h3>
+                <hr className={styles.dashboard__hr} />
+                <h3 className={styles.dashboard__heading}>Completed Tasks:</h3>
                 {completedTodo &&
                     completedTodo
                         .filter((item) => {

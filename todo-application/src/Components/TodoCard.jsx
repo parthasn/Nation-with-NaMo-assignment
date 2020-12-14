@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import './module.todocard.css';
+import styles from "./todocard.module.css"
 import { useDispatch, useSelector } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -78,8 +78,8 @@ function TodoCard({ data }) {
                 <Grid item xs={12}>
                     {status ? (
                         <Paper className={classes.paper_completed}>
-                            <div className="todocard__taskDiv">
-                                <div className="todocard__task">
+                            <div className={styles.todocard__taskDiv}>
+                                <div className={styles.todocard__task}>
                                     <ReactHashtag onHashtagClick={handleHashtag}>{title}</ReactHashtag>
                                 </div>
 
@@ -88,8 +88,8 @@ function TodoCard({ data }) {
                         </Paper>
                     ) : (
                         <Paper className={classes.paper_pending}>
-                            <div className="todocard__taskDiv">
-                                <div className="todocard__task">
+                            <div className={styles.todocard__taskDiv}>
+                                <div className={styles.todocard__task}>
                                     <ReactHashtag onHashtagClick={handleHashtag}>{title}</ReactHashtag>
                                 </div>
                                 <Checkbox
