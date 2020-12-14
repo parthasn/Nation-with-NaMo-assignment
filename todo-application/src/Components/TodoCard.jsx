@@ -73,20 +73,25 @@ function TodoCard({ data }) {
     };
 
     return (
-        <div className="todoCard__container">
+        <div>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     {status ? (
                         <Paper className={classes.paper_completed}>
-                            <div>
-                                <ReactHashtag onHashtagClick={handleHashtag}>{title}</ReactHashtag>
+                            <div className="todocard__taskDiv">
+                                <div className="todocard__task">
+                                    <ReactHashtag onHashtagClick={handleHashtag}>{title}</ReactHashtag>
+                                </div>
+
                                 <DeleteIcon onClick={deleteTodo} className={classes.deleteCompleted} />
                             </div>
                         </Paper>
                     ) : (
                         <Paper className={classes.paper_pending}>
-                            <div>
-                                <ReactHashtag onHashtagClick={handleHashtag}>{title}</ReactHashtag>
+                            <div className="todocard__taskDiv">
+                                <div className="todocard__task">
+                                    <ReactHashtag onHashtagClick={handleHashtag}>{title}</ReactHashtag>
+                                </div>
                                 <Checkbox
                                     className={classes.checkbox}
                                     checked={checked}

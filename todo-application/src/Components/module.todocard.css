@@ -6,16 +6,14 @@ span {
 
 .todocard__taskDiv {
     display: flex;
+    align-items: center;
 }
 
-.todocard__hashtag {
-    display: flex;
-    flex-wrap: wrap;
+.todocard__task {
+    width: 90%;
 }
 
-.todocard__checkbox {
-    flex:0;
-}
+
 
 
 
