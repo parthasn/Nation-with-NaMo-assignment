@@ -1,6 +1,6 @@
 # Nation-with-NaMo-assignment
 
-Tasks
+### Tasks
 
 1. A simple input bar to add Todo on pressing the return key. - Done
 2. Make a Todo Card. - Done
@@ -25,6 +25,9 @@ Tasks
 16. Improve the css of the entire page - Done
 17. A person cannot enter same Todo twice if its already in pending. If user tries,show
 warning. - Done
+
+
+
 
 
 
