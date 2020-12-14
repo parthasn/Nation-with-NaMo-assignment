@@ -26,6 +26,14 @@
 17. A person cannot enter same Todo twice if its already in pending. If user tries,show
 warning. - Done
 
+### Technologies Used
+1. React JS
+2. HTML
+3. CSS
+4. React-Redux
+5. Material UI
+
+
 
 
 
