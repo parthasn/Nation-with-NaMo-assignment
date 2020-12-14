@@ -1,5 +1,7 @@
 # Nation-with-NaMo-assignment
 
+### Link to Application - https://nation-with-namo-assignment-todo.netlify.app/
+
 ### Tasks
 
 1. A simple input bar to add Todo on pressing the return key. - Done
@@ -27,6 +29,7 @@
 warning. - Done
 
 ### Technologies Used
+
 1. React JS
 2. HTML
 3. CSS
