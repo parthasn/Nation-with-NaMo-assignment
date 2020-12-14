@@ -33,6 +33,8 @@
 3. CSS
 4. React-Redux
 5. Material UI
+6. React Hashtag
+7. UUID
 
 
 
