@@ -25,8 +25,6 @@
 14. display entire filter criteria. - Done  
 15. filterBy cannot be repeated. - Done
 16. Improve the css of the entire page - Done
-17. A person cannot enter same Todo twice if its already in pending. If user tries,show
-warning. - Done
 
 ### Technologies Used
 

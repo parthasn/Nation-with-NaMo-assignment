@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import styles from "./dashboard.module.css"
+import styles from './dashboard.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleAddTask, reset } from '../Redux/App/actions';
 import TodoCard from './TodoCard';
 import FilterBox from './FilterBox';
+import Tooltip from '@material-ui/core/Tooltip';
 
 function Dashboard() {
     const [ task, setTask ] = useState('');
@@ -47,12 +48,14 @@ function Dashboard() {
                     onChange={handleChange}
                     onKeyPress={handleKeyPress}
                 />
-                <img
-                    src="https://cdn0.iconfinder.com/data/icons/essentials-solid/100/Refresh-512.png"
-                    alt="reset"
-                    className={styles.dashboard__reset}
-                    onClick={handleReset}
-                />
+                <Tooltip title="Reset" arrow placement="top">
+                    <img
+                        src="https://cdn0.iconfinder.com/data/icons/essentials-solid/100/Refresh-512.png"
+                        alt="reset"
+                        className={styles.dashboard__reset}
+                        onClick={handleReset}
+                    />
+                </Tooltip>
             </div>
             <hr className={styles.dashboard__hr} />
             <div className={styles.dashboard__filter}>

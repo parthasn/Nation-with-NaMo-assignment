@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import styles from "./todocard.module.css"
+import styles from './todocard.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -8,6 +8,7 @@ import { toggleTask, filter, deleteTask } from '../Redux/App/actions';
 import ReactHashtag from 'react-hashtag';
 import Checkbox from '@material-ui/core/Checkbox';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles(() => ({
     paper_completed: {
@@ -82,8 +83,9 @@ function TodoCard({ data }) {
                                 <div className={styles.todocard__task}>
                                     <ReactHashtag onHashtagClick={handleHashtag}>{title}</ReactHashtag>
                                 </div>
-
-                                <DeleteIcon onClick={deleteTodo} className={classes.deleteCompleted} />
+                                <Tooltip title="Delete" arrow placement="top">
+                                    <DeleteIcon onClick={deleteTodo} className={classes.deleteCompleted} />
+                                </Tooltip>
                             </div>
                         </Paper>
                     ) : (
@@ -92,13 +94,17 @@ function TodoCard({ data }) {
                                 <div className={styles.todocard__task}>
                                     <ReactHashtag onHashtagClick={handleHashtag}>{title}</ReactHashtag>
                                 </div>
-                                <Checkbox
-                                    className={classes.checkbox}
-                                    checked={checked}
-                                    onChange={handleToggle}
-                                    inputProps={{ 'aria-label': 'primary checkbox' }}
-                                />
-                                <DeleteIcon onClick={deleteTodo} className={classes.deletePending} />
+                                <Tooltip title="Completed" arrow placement="top">
+                                    <Checkbox
+                                        className={classes.checkbox}
+                                        checked={checked}
+                                        onChange={handleToggle}
+                                        inputProps={{ 'aria-label': 'primary checkbox' }}
+                                    />
+                                </Tooltip>
+                                <Tooltip title="Delete" arrow placement="top">
+                                    <DeleteIcon onClick={deleteTodo} className={classes.deletePending} />
+                                </Tooltip>
                             </div>
                         </Paper>
                     )}
