@@ -18,7 +18,7 @@ const reducer = (state = initState, { type, payload }) => {
             };
 
         case TOGGLE_TASK:
-            let newTodo = state.todo.find((item) => item.id === payload);
+            let newTodo = state.pending.find((item) => item.id === payload);
             newTodo.status = !newTodo.status;
             newTodo.completionTime = Date.now();
             saveData('completed', [ ...state.completedTodo, newTodo ]);
